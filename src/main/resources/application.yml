@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: myInput
+          binder: solace
+        output:
+          destination: myOutput
+          binder: solace
+  security:
+    user:
+      name: admin
+      password: solace1
+server:
+  port: 8888
+solace:
+  java:
+    host: 192.168.65.3
+    msgVpn: default
+    clientUsername: default
+    clientPassword: default
