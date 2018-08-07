@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.context.annotation.ComponentScan;
+
 import org.springframework.messaging.Message;
 
 import org.springframework.messaging.support.MessageBuilder;

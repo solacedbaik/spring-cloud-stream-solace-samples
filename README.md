@@ -1,4 +1,4 @@
-# spring-cloud-stream-solace
+# spring-cloud-stream-solace-samples
 Spring Cloud Stream samples demonstrating various message exchange patterns using the Solace SCS binder.
 
 *Examples include:*

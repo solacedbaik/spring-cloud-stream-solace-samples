@@ -7,14 +7,15 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.cloud.stream.test.binder.MessageCollector;
-
+import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
+import org.springframework.messaging.MessageHeaders;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import com.solace.samples.scs.processor.MyProcessor;
+import com.solace.samples.scs.processor.ConditionalProcessor;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = MultipleOutputsWithConditionsServiceApplication.class)
@@ -23,27 +24,25 @@ import com.solace.samples.scs.processor.MyProcessor;
 public class MultipleOutputsWithConditionsServiceIntegrationTest {
 
     @Autowired
-    private MyProcessor pipe;
+    private ConditionalProcessor pipe;
 
     @Autowired
     private MessageCollector messageCollector;
 
     @Test
     public void whenSendMessage_thenResponseIsInAOutput() {
-        whenSendMessage(1);
-        thenPayloadInChannelIs(pipe.anOutput(), 1);
+        whenSendMessageWithHeader(55, "bogey");
+        thenPayloadInChannelIs(pipe.lowOutput(), 55);
     }
 
     @Test
     public void whenSendMessage_thenResponseIsInAnotherOutput() {
-        whenSendMessage(11);
-        thenPayloadInChannelIs(pipe.anotherOutput(), 11);
+        whenSendMessageWithHeader(11, "eagle");
+        thenPayloadInChannelIs(pipe.highOutput(), 11);
     }
 
-    private void whenSendMessage(Integer val) {
-        pipe.myInput()
-            .send(MessageBuilder.withPayload(val)
-                .build());
+    private void whenSendMessageWithHeader(Integer val, String header) {
+        pipe.someInput().send(MessageBuilder.withPayload(val).setHeader("type", header).build());
     }
 
     private void thenPayloadInChannelIs(MessageChannel channel, Integer expectedValue) {

@@ -14,14 +14,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.annotation.StreamListener;
-import org.springframework.context.annotation.ComponentScan;
+
 import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.support.MessageBuilder;
 
 @RestController
 @SpringBootApplication
-//@ComponentScan("com.solace.spring.stream.binder.config")
 @EnableBinding(RestProcessor.class)
 public class SolaceController {
     private static final String template = "Hello, %s!";
