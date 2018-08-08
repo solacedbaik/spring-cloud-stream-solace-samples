@@ -6,11 +6,11 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
 public interface MyProcessor {
-    String INPUT = "myInput";
+    String INPUT = "testInput";
     String OUTPUT = "anotherOutput";
 
     @Input
-    SubscribableChannel myInput();
+    SubscribableChannel testInput();
 
     @Output("myOutput")
     MessageChannel anOutput();

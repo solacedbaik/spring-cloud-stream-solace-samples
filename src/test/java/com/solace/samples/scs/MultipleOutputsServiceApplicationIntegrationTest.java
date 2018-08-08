@@ -41,7 +41,7 @@ public class MultipleOutputsServiceApplicationIntegrationTest {
     }
 
     private void whenSendMessage(Integer val) {
-        pipe.myInput()
+        pipe.testInput()
             .send(MessageBuilder.withPayload(val)
                 .build());
     }
