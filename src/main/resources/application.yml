@@ -5,6 +5,7 @@ spring:
         input:
           destination: myInput
           binder: solace
+          group: test.group
         output:
           destination: myOutput
           binder: solace
