@@ -28,7 +28,7 @@ public class SolaceController {
 
     @Autowired
     private RestProcessor processor;
-
+    
     public static void main(String[] args) {
         SpringApplication.run(SolaceController.class, args);
     }
@@ -43,7 +43,7 @@ public class SolaceController {
     @RequestMapping("/greeting")
     public Greeting restGreeting(@RequestParam(value="name", defaultValue="World") String name) {
     	Greeting greeting = doGreeting(name);
-    	processor.restOutput().send(message(greeting));
+    	processor.restOutput().send(message(greeting));    	
     	return greeting;
     }
     
