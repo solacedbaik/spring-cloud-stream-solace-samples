@@ -24,9 +24,9 @@
 
     <dependencies>
 		<dependency>
-            <groupId>com.solace.spring.stream</groupId>
-            <artifactId>spring-cloud-stream-binder-solace</artifactId>
-            <version>0.0.2</version>
+            <groupId>com.solace.spring.cloud.stream</groupId>
+            <artifactId>spring-cloud-starter-stream-solace</artifactId>
+            <version>0.0.5</version>
 		</dependency>
 		
         <dependency>
