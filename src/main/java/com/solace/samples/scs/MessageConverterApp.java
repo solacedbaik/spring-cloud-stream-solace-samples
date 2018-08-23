@@ -11,8 +11,6 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.support.MessageBuilder;
 
 import com.solace.samples.scs.messages.TextPlainMessageConverter;
-import com.solace.samples.scs.model.LogMessage;
-import com.solace.samples.scs.processor.RestProcessor;
 
 @SpringBootApplication
 @EnableBinding(Processor.class)
