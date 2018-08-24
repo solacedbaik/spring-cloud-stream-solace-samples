@@ -14,7 +14,13 @@ spring:
       name: admin
       password: solace1
 server:
-  port: 8888
+  port: 9999
+management:
+  endpoints:
+    web:
+      exposure:
+        include:
+        - bindings
 solace:
   java:
     host: 192.168.65.3
