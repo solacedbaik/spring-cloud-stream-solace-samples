@@ -4,11 +4,21 @@ spring:
       bindings:
         input:
           destination: myInput
-          binder: solace
+          binder: local_solace
           group: test.group
         output:
           destination: myOutput
-          binder: solace
+          binder: local_solace
+      binders:
+        local_solace:
+          type: solace
+          environment:
+            solace:
+              java:
+                host: 192.168.65.3
+                msgVpn: default
+                clientUsername: default
+                clientPassword: default          
   security:
     user:
       name: admin
@@ -21,9 +31,3 @@ management:
       exposure:
         include:
         - bindings
-solace:
-  java:
-    host: 192.168.65.3
-    msgVpn: default
-    clientUsername: default
-    clientPassword: default
