@@ -24,11 +24,11 @@
 
     <dependencies>
 		<dependency>
-            <groupId>com.solace.spring.cloud</groupId>
-            <artifactId>spring-cloud-starter-stream-solace</artifactId>
-            <version>0.0.10</version>
+		  <groupId>com.solace.spring.cloud</groupId>
+		  <artifactId>spring-cloud-stream-binder-solace</artifactId>
+		  <version>1.0.0</version>
 		</dependency>
-		
+
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-stream-test-support</artifactId>
