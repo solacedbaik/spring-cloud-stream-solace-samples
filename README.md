@@ -3,13 +3,13 @@ Spring Cloud Stream samples demonstrating various message exchange patterns usin
 
 ## Examples include:
 
-1. MessageConverter:  Sample processor app that takes a message and formats it for logging and sends to an output channel.  Uses the default SCS Processor interface.
+1. basic-message-converter:  Sample processor app that takes a message and formats it for logging and sends to an output channel.  Uses the default SCS Processor interface.
 
-2. MultipleOutputsService: Custom processor using non-default named channels to conditionally route messages depending on the value of the input.
+2. conditional-router: Custom processor using non-default named channels to conditionally route messages depending on the value of the input.
 
-3.  MultipleOutputsWithConditionsService:  Another custom processor that conditionally routes but uses annotation-based header filters for declarative routing instead of programmatic checking of conditions.  Note that payload-based routing is not supported by the SCS version tested with these samples.
+3.  conditional-declarative-router:  Another custom processor that conditionally routes but uses annotation-based header filters for declarative routing instead of programmatic checking of conditions.  Note that payload-based routing is not supported by the SCS version tested with these samples.
 
-4.  SolaceController:  REST controller that accepts HTTP input and publishes a message to the SCS transport (in this case, Solace) using REST input.  Can also accept input from an input channel.
+4.  solace-controller:  REST controller that accepts HTTP input and publishes a message to the SCS transport (in this case, Solace) using REST input.  Can also accept input from an input channel.
 
 ### Common Setup
 
@@ -21,8 +21,6 @@ Update the application.yml file to use your Solace configuration (username, cred
 2. Run `java -jar target/{PROJECT-NAME}.jar`
 
 Replace {PROJECT-NAME} with the actual generated jar name.
-
-* NOTE:  This project should be split out into separate Spring Boot apps to allow for running each SCS app independently as would typically be done for microservices.  
 
 ### Testing
 
