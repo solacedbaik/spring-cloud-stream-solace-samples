@@ -1,18 +1,16 @@
 spring:
   cloud:
     stream:
-      solace:
-        bindings:
-          input:
-            consumer:
-              queueAdditionalSubscriptions: a/b/c
       bindings:
-        input:
-          destination: myInput
+        testInput:
+          destination: testInput
           binder: local_solace
-          group: test.group
-        output:
-          destination: myOutput
+          group: group
+        myOutput:
+          destination: anOutput
+          binder: local_solace
+        anotherOutput:
+          destination: anotherOutput
           binder: local_solace
       binders:
         local_solace:
@@ -24,17 +22,3 @@ spring:
                 msgVpn: default
                 clientUsername: default
                 clientPassword: default
-                connectRetries: -1
-                reconnectRetries: -1                
-  security:
-    user:
-      name: admin
-      password: solace1
-server:
-  port: 9999
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-        - bindings

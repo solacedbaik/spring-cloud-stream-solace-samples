@@ -1,47 +1,8 @@
-spring:
-  cloud:
-    stream:
-      solace:
-        bindings:
-          input:
-            consumer:
-              queueAdditionalSubscriptions: a/b/c
-      bindings:
-        output:
-          destination: transformed
-          binder: local_solace
-        test-sink:
-          destination: transformed
-          binder: local_solace          
-        input:
-          destination: testtock
-          binder: local_solace
-          group: group          
-        test-source:
-          destination: testtock
-          binder: local_solace
-
-      binders:
-        local_solace:
-          type: solace
-          environment:
-            solace:
-              java:
-                host: 192.168.65.3
-                msgVpn: default
-                clientUsername: default
-                clientPassword: default
-                connectRetries: -1
-                reconnectRetries: -1                
-  security:
-    user:
-      name: admin
-      password: solace1
+solace:
+  java:
+    host: 192.168.65.3
+    msgVpn: default
+    clientUsername: default
+    clientPassword: default
 server:
   port: 9999
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-        - bindings
