@@ -24,17 +24,3 @@ spring:
                 msgVpn: default
                 clientUsername: default
                 clientPassword: default
-                connectRetries: -1
-                reconnectRetries: -1                
-  security:
-    user:
-      name: admin
-      password: solace1
-server:
-  port: 9999
-management:
-  endpoints:
-    web:
-      exposure:
-        include:
-        - bindings
