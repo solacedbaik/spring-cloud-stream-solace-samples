@@ -27,19 +27,17 @@ public class ConditionalRouterTests {
 	@Autowired
 	protected MessageCollector collector;
 
-	private static final String TEST_RESULT = "RESULT HERE";
-
 	@Test
 	public void testRoutingOutput() {
 		channels.testInput().send(new GenericMessage<Integer>(1));
-		assertThat(collector.forChannel(channels.anOutput()), receivesPayloadThat(containsString(TEST_RESULT)));
+		assertThat(collector.forChannel(channels.anOutput()), receivesPayloadThat(containsString("1")));
 
 	}
 	
 	@Test
 	public void testRoutingAnotherOutput() {
 		channels.testInput().send(new GenericMessage<Integer>(100));
-		assertThat(collector.forChannel(channels.anotherOutput()), receivesPayloadThat(containsString(TEST_RESULT)));
+		assertThat(collector.forChannel(channels.anotherOutput()), receivesPayloadThat(containsString("100")));
 
 	}
 

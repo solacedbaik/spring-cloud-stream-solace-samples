@@ -27,7 +27,7 @@ public class SolaceControllerTests {
 	@Autowired
 	protected MessageCollector collector;
 
-	private static final String TEST_RESULT = "RESULT HERE";
+	private static final String TEST_RESULT = "{\"id\":1,\"content\":\"Hello, Principal Skinner!\"}";
 
 	@Test
 	public void testGreeting() {

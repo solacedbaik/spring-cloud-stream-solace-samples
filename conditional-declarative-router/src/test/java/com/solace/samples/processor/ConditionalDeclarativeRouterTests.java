@@ -10,7 +10,7 @@ import com.solace.samples.bindings.ConditionalProcessor;
 
 import org.springframework.cloud.stream.test.binder.MessageCollector;
 import org.springframework.messaging.Message;
-import org.springframework.messaging.support.GenericMessage;
+
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
