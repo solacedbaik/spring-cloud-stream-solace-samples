@@ -24,7 +24,84 @@ Replace {PROJECT-NAME} with the actual generated jar name.
 
 ### Testing
 
-Since this project was based off the Baeldung sample, it kept the same approach of containing all SCS examples.  As such, you can use STS to easily run unit tests on each of the samples.
+Unit tests are provided with each of the samples, however, running them in STS will not use the Solace binder.  You can test the apps by starting each one using the Boot Dashboard, and sending test messages as noted below.
+ 
+1. basic-message-converter
+
+Create a POST request to the broker using the following:
+
+* URL (adjust as needed):
+`http://192.168.65.3:9000/myInput)`
+or
+`http://192.168.65.3:9000/a/b/c)`
+
+* Header:
+`Content-Type: application/json`
+
+* JSON Body (for example):
+`{ "message": "some data"}`
+
+* Result: The converted message should appear on topic `myOutput` formatted along the lines of:
+`[1]: {"message": "some data"}`
+
+2. conditional-router:
+
+Create a POST request to the broker using the following:
+
+* URL (adjust as needed):
+`http://192.168.65.3:9000/testInput`
+
+* Header:
+`Content-Type: application/json`
+
+* JSON Body (for example):
+`1` or
+`10` (or above)
+
+* Result: The same message should appear on topic `anOutput` or `anotherOutput` depending on whether the body is < 10 or not.
+
+3.  conditional-declarative-router:
+
+Create a POST request to the broker using the following:
+
+* URL (adjust as needed):
+`http://192.168.65.3:9000/someInput`
+
+* Headers:
+`Content-Type: application/json`
+
+`Solace-User-Property-type: eagle` or
+`Solace-User-Property-type: bogey`
+
+* JSON Body (for example):
+`123`
+
+* Result: The same message should appear on topic `highOutput` or `lowOutput` depending on the header used above.
+
+4.  solace-controller:
+
+Create a POST request to the broker using the following:
+
+* URL (adjust as needed):
+`http://192.168.65.3:9000/restInput`
+
+* Header:
+`Content-Type: application/json`
+
+* JSON Body (for example):
+`Somebody`
+
+* Result: You should see a response message published on the topic `restOutput` similar to the following:
+
+`{"id":1, "content":"Hello, \"Somebody\"!"}`
+
+Alternatively, you can do a GET request to the microservice itself (Spring Boot Web sevice):
+
+`http://localhost:9999/greeting?name=Somebody`
+
+NOTE: You may have to login with username `user` and the auto-generated password provided on startup.
+
+You should get an HTTP reply with the same content noted above, in addition to the message being published to `restOutput`.  
 
 ## Resources
 
