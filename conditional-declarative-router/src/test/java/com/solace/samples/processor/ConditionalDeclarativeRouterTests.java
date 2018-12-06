@@ -32,17 +32,23 @@ public class ConditionalDeclarativeRouterTests {
 
 	@Test
 	public void testAnOutput() {
-		Message<Integer> msg  = MessageBuilder.withPayload(1).setHeader("type", "bogey").build();
-		channels.someInput().send(msg);
-		assertThat(collector.forChannel(channels.lowOutput()), receivesPayloadThat(containsString("1")));
+		Message<Integer> msg  = MessageBuilder.withPayload(1)
+				.setHeader("type", "bogey")
+				.setHeader("deliveryAttempt", 1)
+				.build();
+		channels.input1().send(msg);
+		assertThat(collector.forChannel(channels.output2()), receivesPayloadThat(containsString("1")));
 
 	}
 	
 	@Test
 	public void testAnotherOutput() {
-		Message<Integer> msg  = MessageBuilder.withPayload(1).setHeader("type", "eagle").build();
-		channels.someInput().send(msg);
-		assertThat(collector.forChannel(channels.highOutput()), receivesPayloadThat(containsString("1")));
+		Message<Integer> msg  = MessageBuilder.withPayload(1)
+				.setHeader("type", "eagle")
+				.setHeader("deliveryAttempt", 1)
+				.build();
+		channels.input2().send(msg);
+		assertThat(collector.forChannel(channels.output1()), receivesPayloadThat(containsString("1")));
 
 	}
 

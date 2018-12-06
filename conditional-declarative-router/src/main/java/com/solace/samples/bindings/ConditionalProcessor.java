@@ -6,14 +6,18 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.SubscribableChannel;
 
 public interface ConditionalProcessor {
-    String INPUT = "someInput";
+    String INPUT1 = "input1";
+    String INPUT2 = "input2";
 
     @Input
-    SubscribableChannel someInput();
+    SubscribableChannel input1();
+
+    @Input
+    SubscribableChannel input2();
+    
+    @Output
+    MessageChannel output1();
 
     @Output
-    MessageChannel lowOutput();
-
-    @Output
-    MessageChannel highOutput();
+    MessageChannel output2();
 }
