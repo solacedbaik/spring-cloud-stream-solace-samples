@@ -24,6 +24,13 @@ public class ConditionalDeclarativeRouter {
     
     @Autowired
     private ConditionalProcessor processor;
+    
+    @StreamListener(ConditionalProcessor.INPUT1)
+    public void testException(Integer val) {
+    	// This method is called when incoming message doesn't match the conditional routing method
+    	// In this case, we throw an exception as we only accept valid 'type' header values
+        throw new IllegalArgumentException("testException");
+    }
 
     @StreamListener(target = ConditionalProcessor.INPUT1, condition = "headers['type']=='bogey'")
     public void routeValuesToAnOutput(Integer val) {
