@@ -35,4 +35,3 @@ spring:
                 msgVpn: v2
                 clientUsername: default
                 clientPassword: default
-                
