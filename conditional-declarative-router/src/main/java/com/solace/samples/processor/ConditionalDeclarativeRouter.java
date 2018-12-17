@@ -26,7 +26,7 @@ public class ConditionalDeclarativeRouter {
     private ConditionalProcessor processor;
     
     @StreamListener(ConditionalProcessor.INPUT1)
-    public void testException(Integer val) {
+    public void handleNoMatchingCondition(Integer val) {
     	// This method is called when incoming message doesn't match the conditional routing method
     	// In this case, we throw an exception as we only accept valid 'type' header values
         throw new IllegalArgumentException("testException");
@@ -50,7 +50,7 @@ public class ConditionalDeclarativeRouter {
     	System.out.println("Handling appERROR: " + message);
     }
     
-    // Global error handler - all stream-specific error channels bridged to this channel    
+    // Global error handler - all stream-specific error channels bridged to this channel
     @StreamListener("errorChannel")
     public void globalError(Message<?> message) {
     	System.out.println("Handling globalERROR: " + message);
